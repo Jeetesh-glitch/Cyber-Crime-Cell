@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Public Dashboard - Government Cybercrime Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .user-info {
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5aa0 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .logout-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            border-color: #2b6cb0;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e6f3ff 0%, #cce7ff 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 1.5rem;
+            color: #2b6cb0;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <h1>🏠 Public User Dashboard</h1>
+            <p>Welcome to your cybercrime portal account</p>
+        </div>
+        
+        <div class="user-info" id="userInfo">
+            <h3>👤 User Information</h3>
+            <p id="userDetails">Loading user information...</p>
+            <button class="logout-btn" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3>File Complaint</h3>
+                <p>Report a cybercrime incident</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Track Status</h3>
+                <p>Check your complaint status</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Safety Tips</h3>
+                <p>Learn about cybersecurity</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load user information
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (currentUser) {
+                document.getElementById('userDetails').innerHTML = `
+                    <strong>Name:</strong> ${currentUser.fullname}<br>
+                    <strong>Username:</strong> ${currentUser.username}<br>
+                    <strong>Email:</strong> ${currentUser.email}<br>
+                    <strong>Role:</strong> ${currentUser.role.toUpperCase()}<br>
+                    <strong>Login Time:</strong> ${new Date(currentUser.loginTime).toLocaleString()}
+                `;
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+        
+        function handleLogout() {
+            localStorage.removeItem('currentUser');
+            alert('Logged out successfully!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Government Cybercrime Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .dashboard-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            padding: 3rem;
+        }
+        
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #f1f5f9;
+        }
+        
+        .admin-badge {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .user-info {
+            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        
+        .logout-btn {
+            background: #e53e3e;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .dashboard-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .dashboard-card:hover {
+            border-color: #7c3aed;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem auto;
+            font-size: 1.5rem;
+            color: #7c3aed;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="admin-badge">👮 ADMIN ACCESS</div>
+            <h1>🛡️ Admin Dashboard</h1>
+            <p>Administrative control panel for cybercrime portal</p>
+        </div>
+        
+        <div class="user-info" id="userInfo">
+            <h3>👮 Officer Information</h3>
+            <p id="userDetails">Loading officer information...</p>
+            <button class="logout-btn" onclick="handleLogout()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </div>
+        
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-folder-open"></i>
+                </div>
+                <h3>Manage Cases</h3>
+                <p>View and manage complaint cases</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>User Management</h3>
+                <p>Manage user accounts and roles</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <h3>Reports & Analytics</h3>
+                <p>View crime statistics and reports</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3>System Settings</h3>
+                <p>Configure portal settings</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Notifications</h3>
+                <p>Manage system notifications</p>
+            </div>
+            
+            <div class="dashboard-card">
+                <div class="card-icon">
+                    <i class="fas fa-shield-check"></i>
+                </div>
+                <h3>Security Logs</h3>
+                <p>Monitor security activities</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Load user information
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (currentUser) {
+                if (currentUser.role !== 'admin') {
+                    alert('Access denied. Admin privileges required.');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                
+                document.getElementById('userDetails').innerHTML = `
+                    <strong>Officer Name:</strong> ${currentUser.fullname}<br>
+                    <strong>Username:</strong> ${currentUser.username}<br>
+                    <strong>Official Email:</strong> ${currentUser.email}<br>
+                    <strong>Access Level:</strong> ${currentUser.role.toUpperCase()}<br>
+                    <strong>Session Started:</strong> ${new Date(currentUser.loginTime).toLocaleString()}
+                `;
+            } else {
+                window.location.href = 'index.html';
+            }
+        });
+        
+        function handleLogout() {
+            localStorage.removeItem('currentUser');
+            alert('Admin session ended successfully!');
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

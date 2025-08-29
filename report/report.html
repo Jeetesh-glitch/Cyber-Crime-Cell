@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - Government Cybercrime Portal</title>
+    <link rel="stylesheet" href="report.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span class="logo-text">
+                        <strong>Cyber Crime Cell</strong>
+                        <small>Police Department</small>
+                    </span>
+                </div>
+                
+                <nav class="nav-menu" id="navMenu">
+                    <ul>
+                        <li><a href="../home.html">Home</a></li>
+                        <li><a href="report.html">Report</a></li>
+                         <li><a href="../complaint/complaint-status.html">Complaint Status</a></li>
+                        <li><a href="../advisories/advisories.html">Advisories</a></li>
+                       
+                    </ul>
+                </nav>
+
+                <div class="header-actions">
+                    <div class="profile-dropdown">
+                        <button class="profile-btn" id="profileBtn">
+                            <i class="fas fa-user-circle"></i>
+                        </button>
+                        <div class="dropdown-menu" id="dropdownMenu">
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-users"></i>
+                                Public Access
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user-shield"></i>
+                                Admin Login
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-cog"></i>
+                                Settings
+                            </a>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+              <h1 class="hero-title"> Report Fake News or Online Exploitation</h1></div>
+                <p>Help us keep the internet safe by reporting harmful content. Your information will remain confidential.</p>
+                <div class="security-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Secure & Verified by Govt. Authorities</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Report Form -->
+                <div class="report-section">
+                    <div class="form-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <div class="steps">
+                            <div class="step active" data-step="1">
+                                <span class="step-number">1</span>
+                                <span class="step-label">Type</span>
+                            </div>
+                            <div class="step" data-step="2">
+                                <span class="step-number">2</span>
+                                <span class="step-label">Details</span>
+                            </div>
+                            <div class="step" data-step="3">
+                                <span class="step-number">3</span>
+                                <span class="step-label">Location</span>
+                            </div>
+                            <div class="step" data-step="4">
+                                <span class="step-number">4</span>
+                                <span class="step-label">Reporter</span>
+                            </div>
+                            <div class="step" data-step="5">
+                                <span class="step-number">5</span>
+                                <span class="step-label">Submit</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form id="reportForm" class="report-form">
+                        <!-- Step 1: Report Type Selection -->
+                        <div class="form-step active" id="step1">
+                            <h2>Select Report Type</h2>
+                            <div class="report-types">
+                                <div class="report-type-option">
+                                    <input type="radio" id="fake-news" name="reportType" value="fake-news">
+                                    <label for="fake-news">
+                                        <i class="fas fa-newspaper"></i>
+                                        <span>Fake News / Misinformation</span>
+                                    </label>
+                                </div>
+                                <div class="report-type-option">
+                                    <input type="radio" id="hate-speech" name="reportType" value="hate-speech">
+                                    <label for="hate-speech">
+                                        <i class="fas fa-comments"></i>
+                                        <span>Hate Speech / Harassment</span>
+                                    </label>
+                                </div>
+                                <div class="report-type-option">
+                                    <input type="radio" id="fraudulent-account" name="reportType" value="fraudulent-account">
+                                    <label for="fraudulent-account">
+                                        <i class="fas fa-mask"></i>
+                                        <span>Fraudulent Account / Impersonation</span>
+                                    </label>
+                                </div>
+                                <div class="report-type-option">
+                                    <input type="radio" id="exploitative-content" name="reportType" value="exploitative-content">
+                                    <label for="exploitative-content">
+                                        <i class="fas fa-camera"></i>
+                                        <span>Objectionable / Exploitative Content</span>
+                                    </label>
+                                </div>
+                                <div class="report-type-option">
+                                    <input type="radio" id="other" name="reportType" value="other">
+                                    <label for="other">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                        <span>Other</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-primary next-btn" onclick="nextStep()">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Report Details -->
+                        <div class="form-step" id="step2">
+                            <h2>Report Details</h2>
+                            <div class="form-group">
+                                <label for="reportTitle">Title of Report *</label>
+                                <input type="text" id="reportTitle" name="reportTitle" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reportDescription">Describe the issue (what did you see?) *</label>
+                                <textarea id="reportDescription" name="reportDescription" rows="5" placeholder="Please provide detailed information about the incident..." required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="evidence">Attach Screenshot / Evidence</label>
+                                <div class="file-upload">
+                                    <input type="file" id="evidence" name="evidence" accept="image/*,.pdf,.doc,.docx" multiple>
+                                    <label for="evidence" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <span>Click to upload or drag and drop</span>
+                                    </label>
+                                    <div class="file-list" id="fileList"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="socialUrl">URL / Social Media Link (optional)</label>
+                                <input type="url" id="socialUrl" name="socialUrl" placeholder="https://example.com/post">
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-secondary prev-btn" onclick="prevStep()">Previous</button>
+                                <button type="button" class="btn btn-primary next-btn" onclick="nextStep()">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Location -->
+                        <div class="form-step" id="step3">
+                            <h2>Location (Optional)</h2>
+                            <div class="location-options">
+                                <div class="form-group">
+                                    <label for="state">Select State</label>
+                                    <select id="state" name="state">
+                                        <option value="">Choose State</option>
+                                        <option value="andhra-pradesh">Andhra Pradesh</option>
+                                        <option value="arunachal-pradesh">Arunachal Pradesh</option>
+                                        <option value="assam">Assam</option>
+                                        <option value="bihar">Bihar</option>
+                                        <option value="chhattisgarh">Chhattisgarh</option>
+                                        <option value="goa">Goa</option>
+                                        <option value="gujarat">Gujarat</option>
+                                        <option value="haryana">Haryana</option>
+                                        <option value="himachal-pradesh">Himachal Pradesh</option>
+                                        <option value="jharkhand">Jharkhand</option>
+                                        <option value="karnataka">Karnataka</option>
+                                        <option value="kerala">Kerala</option>
+                                        <option value="madhya-pradesh">Madhya Pradesh</option>
+                                        <option value="maharashtra">Maharashtra</option>
+                                        <option value="manipur">Manipur</option>
+                                        <option value="meghalaya">Meghalaya</option>
+                                        <option value="mizoram">Mizoram</option>
+                                        <option value="nagaland">Nagaland</option>
+                                        <option value="odisha">Odisha</option>
+                                        <option value="punjab">Punjab</option>
+                                        <option value="rajasthan">Rajasthan</option>
+                                        <option value="sikkim">Sikkim</option>
+                                        <option value="tamil-nadu">Tamil Nadu</option>
+                                        <option value="telangana">Telangana</option>
+                                        <option value="tripura">Tripura</option>
+                                        <option value="uttar-pradesh">Uttar Pradesh</option>
+                                        <option value="uttarakhand">Uttarakhand</option>
+                                        <option value="west-bengal">West Bengal</option>
+                                        <option value="delhi">Delhi</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">Select City</label>
+                                    <select id="city" name="city">
+                                        <option value="">Choose City</option>
+                                    </select>
+                                </div>
+                                <div class="auto-location">
+                                    <button type="button" class="btn btn-outline" id="getLocationBtn">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                        Use Current Location
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-secondary prev-btn" onclick="prevStep()">Previous</button>
+                                <button type="button" class="btn btn-primary next-btn" onclick="nextStep()">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Reporter Info -->
+                        <div class="form-step" id="step4">
+                            <h2>Reporter Information</h2>
+                            <div class="reporter-mode">
+                                <div class="mode-selection">
+                                    <div class="mode-option">
+                                        <input type="radio" id="anonymous" name="reporterMode" value="anonymous" checked>
+                                        <label for="anonymous">
+                                            <i class="fas fa-user-secret"></i>
+                                            <span>Anonymous Report</span>
+                                            <small>No personal information required</small>
+                                        </label>
+                                    </div>
+                                    <div class="mode-option">
+                                        <input type="radio" id="verified" name="reporterMode" value="verified">
+                                        <label for="verified">
+                                            <i class="fas fa-user-check"></i>
+                                            <span>Verified Report</span>
+                                            <small>Provide contact information for follow-up</small>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="anonymous-section" id="anonymousSection">
+                                    <div class="captcha-container">
+                                        <div class="captcha-box" id="captchaBox">
+                                            <span id="captchaText"></span>
+                                            <button type="button" id="refreshCaptcha">
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+                                        </div>
+                                        <input type="text" id="captchaInput" placeholder="Enter captcha" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="verified-section" id="verifiedSection" style="display: none;">
+                                    <div class="form-group">
+                                        <label for="reporterName">Full Name *</label>
+                                        <input type="text" id="reporterName" name="reporterName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reporterEmail">Email Address *</label>
+                                        <input type="email" id="reporterEmail" name="reporterEmail">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reporterPhone">Phone Number</label>
+                                        <input type="tel" id="reporterPhone" name="reporterPhone">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-secondary prev-btn" onclick="prevStep()">Previous</button>
+                                <button type="button" class="btn btn-primary next-btn" onclick="nextStep()">Review</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 5: Submission -->
+                        <div class="form-step" id="step5">
+                            <h2>Review & Submit</h2>
+                            <div class="review-section" id="reviewSection">
+                                <!-- Review content will be populated by JavaScript -->
+                            </div>
+                            <div class="form-navigation">
+                                <button type="button" class="btn btn-secondary prev-btn" onclick="prevStep()">Previous</button>
+                                <button type="submit" class="btn btn-primary submit-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Submit Report
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div class="success-message" id="successMessage" style="display: none;">
+                        <div class="success-content">
+                            <i class="fas fa-check-circle"></i>
+                            <h3>Report Submitted Successfully!</h3>
+                            <p>Your report has been received and will be reviewed by our team.</p>
+                            <div class="reference-info">
+                                <strong>Reference ID: <span id="referenceId"></span></strong>
+                                <p>Please save this reference ID for future correspondence.</p>
+                            </div>
+                            <div class="success-actions">
+                                <button class="btn btn-primary" onclick="downloadReceipt()">
+                                    <i class="fas fa-download"></i>
+                                    Download Receipt
+                                </button>
+                                <button class="btn btn-secondary" onclick="submitNewReport()">
+                                    Submit New Report
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Advisory Sidebar -->
+                <aside class="advisory-sidebar">
+                    <div class="sidebar-section">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Latest Alerts</h3>
+                        <div class="advisory-list" id="advisoryList">
+                            <div class="advisory-item">
+                                <div class="advisory-date">Dec 28, 2024</div>
+                                <h4>Fake COVID-19 Vaccine Registration</h4>
+                                <p>Beware of fake vaccination certificate websites...</p>
+                                <a href="#" class="advisory-link">Read More</a>
+                            </div>
+                            <div class="advisory-item">
+                                <div class="advisory-date">Dec 27, 2024</div>
+                                <h4>WhatsApp Lottery Scam Alert</h4>
+                                <p>Messages claiming lottery wins are fraudulent...</p>
+                                <a href="#" class="advisory-link">Read More</a>
+                            </div>
+                            <div class="advisory-item">
+                                <div class="advisory-date">Dec 26, 2024</div>
+                                <h4>Banking SMS Phishing</h4>
+                                <p>Fake SMS requesting bank details on the rise...</p>
+                                <a href="#" class="advisory-link">Read More</a>
+                            </div>
+                        </div>
+                        <a href="#advisories" class="view-all-btn">View All Advisories</a>
+                    </div>
+                    
+                    <div class="sidebar-section">
+                        <h3><i class="fas fa-shield-alt"></i> Quick Tips</h3>
+                        <div class="tips-list">
+                            <div class="tip-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Always verify news from multiple sources</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Check URL authenticity before clicking</span>
+                            </div>
+                            <div class="tip-item">
+                                <i class="fas fa-lightbulb"></i>
+                                <span>Report suspicious content immediately</span>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Help Section -->
+    <section class="help-section">
+        <div class="container">
+            <div class="help-content">
+                <div class="help-column">
+                    <h3><i class="fas fa-question-circle"></i> FAQ</h3>
+                    <div class="faq-item">
+                        <h4>What happens after I report?</h4>
+                        <p>Your report is reviewed by our cybercrime experts within 24-48 hours. If verified, appropriate action is taken including content removal and legal proceedings if necessary.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Is my information safe?</h4>
+                        <p>Yes, all reports are handled with strict confidentiality. Anonymous reports require no personal information.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>Can I track my report status?</h4>
+                        <p>Use your reference ID to check report status on our tracking page or call our helpline.</p>
+                    </div>
+                </div>
+                
+                <div class="help-column">
+                    <h3><i class="fas fa-phone"></i> Get Help</h3>
+                    <div class="helpline-info">
+                        <div class="helpline-number">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <strong>Cybercrime Helpline</strong>
+                                <span>1930</span>
+                            </div>
+                        </div>
+                        <p>Available 24/7 for immediate assistance</p>
+                        <button class="btn btn-outline">
+                            <i class="fas fa-comments"></i>
+                            Live Chat Support
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="help-column">
+                    <h3><i class="fas fa-video"></i> Learn More</h3>
+                    <div class="learning-resources">
+                        <div class="resource-item">
+                            <i class="fas fa-play-circle"></i>
+                            <span>How to Identify Fake News</span>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <span>Cybersecurity Guidelines</span>
+                        </div>
+                        <div class="resource-item">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Digital Safety Tips</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <div class="footer-logo">
+                <h4>Government Cybercrime Portal</h4>
+                    </div>
+                    <p>Protecting citizens from cyber threats and online crimes through awareness, reporting, and swift action.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#report">Report Crime</a></li>
+                        <li><a href="#advisories">Advisories</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Cybersecurity Tips</a></li>
+                        <li><a href="#">Prevention Guidelines</a></li>
+                        <li><a href="#">Legal Information</a></li>
+                        <li><a href="#">Training Materials</a></li>
+                        <li><a href="#">Statistics</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>Helpline: 1930</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>support@cybercrime.gov.in</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>New Delhi, India</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Government of India. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="report.js"></script>
+</body>
+</html>
